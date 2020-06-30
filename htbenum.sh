@@ -67,7 +67,7 @@ UPLOAD="";
 PY2="";
 PY3="";
 
-while getopts ":hi:p:o:wur" opt; do
+while getopts ":hi:p:d:wur" opt; do
 		case ${opt} in
 				h )
 						banner;
@@ -82,9 +82,12 @@ while getopts ":hi:p:o:wur" opt; do
 						;;
 				p )
 						PORT=$OPTARG;
+				
+				d )
+						DIR=$OPTARG;
 						;;
 				o )
-						DIR=$OPTARG;
+						OS=$OPTARG;
 						;;
 				w )
 						WEB=1;
@@ -107,16 +110,30 @@ shift $((OPTIND -1));
 function update () {
 		# Get all scripts, overwrite if they already exist
 		echo -e "${GREEN}[i] Updating all tools...${NC}";
-		# Enumeration scripts
-		wget -nv "https://github.com/diego-treitos/linux-smart-enumeration/raw/master/lse.sh" -O lse.sh;
-		wget -nv "https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh" -O linenum.sh;
-		wget -nv "https://raw.githubusercontent.com/sleventyeleven/linuxprivchecker/master/linuxprivchecker.py" -O linuxprivchecker.py;
-		wget -nv "https://raw.githubusercontent.com/initstring/uptux/master/uptux.py" -O uptux.py;
-		wget -nv "https://raw.githubusercontent.com/Anon-Exploiter/SUID3NUM/master/suid3num.py" -O suid3num.py;
-		# Exploit suggestion scripts
-		wget -nv "https://raw.githubusercontent.com/belane/linux-soft-exploit-suggester/master/linux-soft-exploit-suggester.py" -O les-soft.py;
-		wget -nv "https://raw.githubusercontent.com/offensive-security/exploit-database/master/files_exploits.csv" -O files_exploits.csv;
-		wget -nv "https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh" -O les.sh;
+		if [ $OS -gt linux ]
+		then
+			# Linux Enumeration scripts
+			wget -nv "https://github.com/diego-treitos/linux-smart-enumeration/raw/master/lse.sh" -O lse.sh;
+			wget -nv "https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh" -O linenum.sh;
+			wget -nv "https://raw.githubusercontent.com/sleventyeleven/linuxprivchecker/master/linuxprivchecker.py" -O linuxprivchecker.py;
+			wget -nv "https://raw.githubusercontent.com/initstring/uptux/master/uptux.py" -O uptux.py;
+			wget -nv "https://raw.githubusercontent.com/Anon-Exploiter/SUID3NUM/master/suid3num.py" -O suid3num.py;
+			# Linux Exploit suggestion scripts
+			wget -nv "https://raw.githubusercontent.com/belane/linux-soft-exploit-suggester/master/linux-soft-exploit-suggester.py" -O les-soft.py;
+			wget -nv "https://raw.githubusercontent.com/offensive-security/exploit-database/master/files_exploits.csv" -O files_exploits.csv;
+			wget -nv "https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh" -O les.sh;
+		else
+			if [ $OS -gt windows ]
+		
+				# Windows Enumeration Scripts
+				wget -nv "https://raw.githubusercontent.com/carlospolop/privilege-escalation-awesome-scripts-suite/master/winPEAS/winPEASbat/winPEAS.bat" -O winPEAS.bat;
+				wget -nv "https://raw.githubusercontent.com/rasta-mouse/Sherlock/master/Sherlock.ps1" -O Sherlock.ps1;
+				wget -nv "https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Privesc/PowerUp.ps1" -O PowerUp.ps1;
+				wget -nv "https://raw.githubusercontent.com/411Hall/JAWS/master/jaws-enum.ps1" -O jaws-enum.ps1;
+				wget -nv "https://raw.githubusercontent.com/carlospolop/privilege-escalation-awesome-scripts-suite/master/winPEAS/winPEASbat/winPEAS.bat" -O winPEAS.bat;		
+				# Windows Exploit suggestion scripts
+				wget -nv "https://raw.githubusercontent.com/AonCyberLabs/Windows-Exploit-Suggester/master/windows-exploit-suggester.py" -O windows-exploit-suggester.py;
+
 		echo -e "${GREEN}[i] Update complete!${NC}";
 		exit 0;
 }
