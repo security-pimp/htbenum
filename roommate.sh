@@ -99,7 +99,7 @@ while getopts ":hi:p:d:wur" opt; do
 						;;
 				p )
 						PORT=$OPTARG;
-				
+						;;				
 				d )
 						DIR=$OPTARG;
 						;;
