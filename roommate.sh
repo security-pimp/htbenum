@@ -152,8 +152,8 @@ function update () {
 				# Windows Exploit suggestion scripts
 				wget -nv "https://raw.githubusercontent.com/AonCyberLabs/Windows-Exploit-Suggester/master/windows-exploit-suggester.py" -O windows-exploit-suggester.py;
 			else
-		echo -e "${GREEN}[i] Update complete!${NC}";
-		exit 0;
+			echo -e "${GREEN}[i] Update complete!${NC}";
+			exit 0;
 }
 
 # Check Python versions available
