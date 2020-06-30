@@ -140,9 +140,11 @@ function update () {
 			wget -nv "https://raw.githubusercontent.com/belane/linux-soft-exploit-suggester/master/linux-soft-exploit-suggester.py" -O les-soft.py;
 			wget -nv "https://raw.githubusercontent.com/offensive-security/exploit-database/master/files_exploits.csv" -O files_exploits.csv;
 			wget -nv "https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh" -O les.sh;
+			echo -e "${GREEN}[i] Update complete!${NC}";
+			exit 0;
 		else
 			if [ $OS -gt windows ]
-		
+			then
 				# Windows Enumeration Scripts
 				wget -nv "https://raw.githubusercontent.com/carlospolop/privilege-escalation-awesome-scripts-suite/master/winPEAS/winPEASbat/winPEAS.bat" -O winPEAS.bat;
 				wget -nv "https://raw.githubusercontent.com/rasta-mouse/Sherlock/master/Sherlock.ps1" -O Sherlock.ps1;
@@ -151,8 +153,9 @@ function update () {
 				wget -nv "https://raw.githubusercontent.com/carlospolop/privilege-escalation-awesome-scripts-suite/master/winPEAS/winPEASbat/winPEAS.bat" -O winPEAS.bat;		
 				# Windows Exploit suggestion scripts
 				wget -nv "https://raw.githubusercontent.com/AonCyberLabs/Windows-Exploit-Suggester/master/windows-exploit-suggester.py" -O windows-exploit-suggester.py;
+				echo -e "${GREEN}[i] Update complete!${NC}";
+				exit 0;
 			else
-			echo -e "${GREEN}[i] Update complete!${NC}";
 			exit 0;
 }
 
